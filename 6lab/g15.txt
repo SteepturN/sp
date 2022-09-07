@@ -1,0 +1,32 @@
+# 15
+    $id    $idq    $dec    $int 
+  $bool    $str       (       ) 
+      +       -       *       / 
+      <       =       >      <= 
+     >=     and     not      or 
+   cond    else      if     let 
+ define display newline    set! 
+
+#
+      S -> PROG #1
+   PROG -> DEF #2
+      E -> $id #3 |
+           $int #4 |
+           $dec #5
+   BOOL -> $bool #6 |
+           $idq #7 |
+           REL #8 |
+           AND #9
+    REL -> ( < E E ) #10
+    AND -> HAND BOOL ) #11
+   HAND -> ( and #12 |
+           HAND BOOL #13
+   CALC -> E #14 |
+           BOOL #15
+    DEF -> PRED #16
+   PRED -> HPRED BOOL ) #17
+  HPRED -> PDPAR ) #18
+  PDPAR -> ( define ( $idq #19 |
+           PDPAR $idq #20 |
+           PDPAR $id #21
+

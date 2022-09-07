@@ -1,0 +1,28 @@
+# 06
+    $id    $idq    $dec    $int 
+  $bool    $str       (       ) 
+      +       -       *       / 
+      <       =       >      <= 
+     >=     and     not      or 
+   cond    else      if     let 
+ define display newline    set! 
+
+#
+      S -> PROG #1
+   PROG -> DEF #2
+      E -> $id #3 |
+           $int #4 |
+           $dec #5 |
+           CPROC #6
+  CPROC -> HCPROC ) #7
+ HCPROC -> ( $id #8 |
+           HCPROC E #9
+    DEF -> PROC #10
+   PROC -> HPROC E ) #11
+  HPROC -> PCPAR ) #12 |
+           HPROC VAR #13
+  PCPAR -> ( define ( $id #14 |
+           PCPAR $id #15
+    VAR -> VARDCL $int ) #16
+ VARDCL -> ( define $id #17
+

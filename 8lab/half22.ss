@@ -1,0 +1,53 @@
+;half22 for 206
+(define (root a b)
+ (define temp 0)
+ (set! temp (half-interval a b (f a)(f b)))
+  (display"Total number of iterations=")
+  (display total-iterations)(newline)
+ (display"[")
+ (display a)
+ (display" , ")
+ (display b)
+ (display"]")
+      temp 
+)
+(define (half-interval a b fa fb)
+ (define root 0)
+ (set! total-iterations 0)
+   (set! root(cond(( not (or ( not ( > 0 fa ) ) ( not (> fb 0) ) ) )
+                 (try a b))
+         ((not ( or ( not (> fa 0) ) (> fb 0) ) )
+                 (try b a))
+         (#t(+ b 1)))
+    )
+  (newline)
+  root
+) 
+(define(try neg-point pos-point)
+ (define midpoint 0)
+ (define test-value 0)
+     (set! midpoint (average neg-point pos-point))
+     (display "+")
+     (set! total-iterations (+ total-iterations 1))
+     (cond ( (close-enough? neg-point pos-point) midpoint )
+        ( #t (let() (set! test-value (f midpoint))
+               (cond((> test-value 0)(try neg-point midpoint))
+                    ((> 0 test-value)(try midpoint pos-point))
+                    (#t midpoint))
+         ) );let
+     ) ;if
+)
+(define (close-enough? x y)
+  (> tolerance (abs (- x y))))
+(define (average x y)(*(+ x y)(/ (* +2.0e0))))
+;+.001e0
+(define tolerance +.001e0)
+(define total-iterations 0)
+;   04;[4 , 5.0]4.225
+(define(f z) ;2z * sin(z) - cos(z) + 7
+  (+ (- (* 2 z ( sin z ) ) ( cos z ) ) 7 )
+)
+ (display"Variant 206-04\n")
+;      a b
+ (root 4 +5.0e0)
+ (display"(c) Daniil Butyrev 2022\n")

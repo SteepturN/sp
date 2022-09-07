@@ -1,0 +1,37 @@
+# 04
+     $id     $idq     $dec     $int 
+   $bool     $str        (        ) 
+       +        -        *        / 
+       <        =        >       <= 
+      >=      and      not       or 
+    cond     else       if      let 
+  define  display  newline     set! 
+
+#
+       S -> PROG #1
+    PROG -> CALC #2
+       E -> $id #3 |
+            $int #4 |
+            $dec #5 |
+            COND #6 |
+            CPROC #7
+   CPROC -> HCPROC ) #8
+  HCPROC -> ( $id #9 |
+            HCPROC E #10
+    COND -> ( cond BRANCHES ) #11
+BRANCHES -> CLAUS #12 |
+            CLAUS BRANCHES #13
+   CLAUS -> ( BOOL CLAUSB ) #14
+  CLAUSB -> E #15 |
+            INTER CLAUSB #16
+    BOOL -> $bool #17 |
+            $idq #18 |
+            CPRED #19
+   CPRED -> HCPRED ) #20
+  HCPRED -> ( $idq #21 |
+            HCPRED ARG #22
+     ARG -> E #23 |
+            BOOL #24
+   INTER -> E #25
+    CALC -> E #26
+

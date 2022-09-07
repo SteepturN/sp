@@ -1,0 +1,100 @@
+# $a06
+      $id      $idq      $dec      $int 
+    $bool      $str         (         ) 
+        +         -         *         / 
+        <         =         >        <= 
+       >=       and       not        or 
+     cond      else        if       let 
+   define   display   newline      set! 
+
+#
+        S -> PROG #1
+     PROG -> CALCS #2 |
+             DEFS #3 |
+             DEFS CALCS #4
+        E -> $id #5 |
+             $int #6 |
+             $dec #7 |
+             AREX #8 |
+             COND #9 |
+             EASYLET #10 |
+             CPROC #11
+  EASYLET -> HEASYL E ) #12
+   HEASYL -> ( let ( ) #13 |
+             HEASYL INTER #14
+     AREX -> HAREX E ) #15
+    HAREX -> ( AROP #16 |
+             HAREX E #17
+     AROP -> + #18 |
+             - #19 |
+             * #20 |
+             / #21
+    CPROC -> HCPROC ) #22
+   HCPROC -> ( $id #23 |
+             HCPROC E #24
+     COND -> ( cond BRANCHES ) #25
+ BRANCHES -> CLAUS ELSE #26
+    CLAUS -> ( BOOL E ) #27
+     ELSE -> ( else ELSEB ) #28
+    ELSEB -> E #29 |
+             INTER ELSEB #30
+      STR -> $str #31 |
+             SCOND #32
+    SCOND -> ( cond SBRANCHES ) #33
+SBRANCHES -> SELSE #34 |
+             SCLAUS SBRANCHES #35
+   SCLAUS -> ( BOOL STR ) #36
+    SELSE -> ( else STR ) #37
+     BOOL -> $bool #38 |
+             $idq #39 |
+             REL #40 |
+             ( not BOOL ) #41 |
+             OR #42 |
+             CPRED #43
+       OR -> ( or ORARGS ) #44
+   ORARGS -> BOOL ORARGS #45 |
+             BOOL #46
+    CPRED -> ( $idq ) #47 |
+             ( $idq PDARGS ) #48
+   PDARGS -> ARG #49 |
+             ARG PDARGS #50
+      ARG -> E #51 |
+             BOOL #52
+      REL -> ( = E E ) #53 |
+             ( >= E E ) #54
+  DISPSET -> ( display E ) #55 |
+             ( display BOOL ) #56 |
+             ( display STR ) #57 |
+             ( newline ) #58 |
+             SET #59
+    INTER -> DISPSET #60 |
+             E #61
+    CALCS -> CALC #62 |
+             CALCS CALC #63
+     CALC -> E #64 |
+             BOOL #65 |
+             STR #66 |
+             DISPSET #67
+     DEFS -> DEF #68 |
+             DEFS DEF #69
+      DEF -> PRED #70 |
+             VAR #71 |
+             PROC #72
+     PRED -> HPRED BOOL ) #73
+    HPRED -> PDPAR ) #74
+    PDPAR -> ( define ( $idq #75 |
+             PDPAR $idq #76 |
+             PDPAR $id #77
+      SET -> ( set! $id E ) #78
+      VAR -> VARDCL VARINI ) #79
+   VARDCL -> ( define $id #80
+   VARINI -> $int #81 |
+             $dec #82
+     PROC -> HPROC PCBODY ) #83
+    HPROC -> PCPAR ) #84
+   PCBODY -> E #85 |
+             INTER PCBODY #86 |
+             VAR PCBODY #87
+    PCPAR -> ( define ( $id #88 |
+             PCPAR $id #89
+

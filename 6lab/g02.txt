@@ -1,0 +1,35 @@
+# 02
+    $id    $idq    $dec    $int 
+  $bool    $str       (       ) 
+      +       -       *       / 
+      <       =       >      <= 
+     >=     and     not      or 
+   cond    else      if     let 
+ define display newline    set! 
+
+#
+      S -> PROG #1
+   PROG -> CALC #2
+   CALC -> E #3
+      E -> $id #4 |
+           $int #5 |
+           $dec #6 |
+           AREX #7 |
+           IF #8 |
+           EASYLET #9
+   AREX -> HAREX E ) #10
+  HAREX -> ( AROP #11 |
+           HAREX E #12
+   AROP -> - #13
+     IF -> ( if BOOL E E ) #14
+EASYLET -> HEASYL E ) #15
+ HEASYL -> ( let ( ) #16 |
+           HEASYL INTER #17
+   BOOL -> $bool #18 |
+           $idq #19 |
+           REL #20
+    REL -> ( < E E ) #21
+DISPSET -> ( display E ) #22 |
+           ( newline ) #23
+  INTER -> DISPSET #24
+

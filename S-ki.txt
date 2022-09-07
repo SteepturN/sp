@@ -1,0 +1,7 @@
+struct tSA{
+  std::string line;
+  string name;
+  int count;
+  int types;
+  string obj;
+}

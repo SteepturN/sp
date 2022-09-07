@@ -1,0 +1,54 @@
+  // 	string name = S1->name;
+  // 	if( scope == LOCAL_SC ) {
+  // 		if( locals.count( name ) ) {
+  // 			locals[ name ].set( USED );
+  // 		} else {
+  // 			//error
+  // 			return 1;
+  // 		}
+  // 	}
+  // 	if( scope == GLOBAL_SC ) {
+  // 		if( !globals.count( name ) ) { //наверное тут сразу выйдет анализатор, а это вообще правильно?
+  // 			ferror_message+=
+  // 				"Error[09-1] in line "+ S1->line +": the variable '"
+  // 				+name+
+  // 				"' is not defined!\n";
+  // 			//переменная 'a' не определена!
+  // 			//the variable 'a' is not defined!
+  // 			return 1;
+  // 		} else {
+  // 			tgName& ref = globals[ name ];
+  // 			// if( ref.empty() ){ //интересно, как он может оказаться пустым?
+  // 			// 				   //нет даже указания, что это переменная, а как это вообще возможно?
+  // 			// 				   //ведь определение уже было, к тому же гораздо раньше вычислений
+  // 			// 				   //там должно было быть всё это проставлено
+  // 			// 				   //поэтому это должна быть не нужная ветка
+  // 			// 	ref = tgName( VAR | USED, S1->line, VAR_ARITY, VAR_TYPES );
+  // 			// 	break;
+  // 			// } else
+  // 			// if( ref.test( VAR ) ){ //ветка сработает, если определено,
+  // 								   //но это происходит всегда
+  // 								   //так как мы это в начале проверили
+  // 			ref.set( USED );
+  // 		// } else
+  // 			if( ref.test( BUILT ) ){ //встроенное что-то, может даже процедура
+  // 									 //наверное это должно вообще сначала проверяться
+  // 				ferror_message+=
+  // 					"Error[09-2] in line "+ S1->line +": the built-in '"
+  // 					+name+
+  // 					"' procedure \n\t\t\t cannot be used as a variable!\n";
+  // 			//встроенную процедуру 'abs' нельзя использовать в качестве переменной
+  // 			//the built-in 'abs' procedure cannot be used as a variable
+  // 			return 1;
+  // 			}
+
+  // 			ferror_message+=
+  // 				"Error[09-3] in line "+ S1->line +": the name '"
+  // 				+name+
+  // 				"' cannot be used to refer to a variable;\n"+
+  // 				"\t\t\tit was previously declared as a procedure in line "+ ref.line +" !\n";
+  // 	//имя 'f' нельзя использовать для ссылки на переменную, в строке 1 оно ранее объявлено как процедура
+  // 	//the name 'f' cannot be used to refer to a variable; it was previously declared as a procedure in line 1
+  //       return 1;
+
+  // }while(false);
